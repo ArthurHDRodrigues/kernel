@@ -1,0 +1,132 @@
+\documentclass[]{article}
+
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb,latexsym,amsmath, mathtools}     % Standard packages
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{1.0in}
+\addtolength{\textheight}{1.00in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\topmargin}{-.50in}
+\linespread{1.3}
+
+%%%%%%%%%%
+%%macros%%
+%%%%%%%%%%
+\newcommand{\defi}{\textbf} % \textit
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem/Proof Environments %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Teorema}
+\newtheorem{conjecture}[theorem]{Conjectura}
+\newenvironment{proof}{\noindent{\bf Prova:}}{$\hfill \Box$ \vspace{10pt}}  
+\newenvironment{definition}{\noindent{\bf Definição:}}
+
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+\begin{document}
+
+\title{Resumo de teoremas de kernels em digrafos}
+\author{Arthur Rodrigues}
+\date{}
+\maketitle
+
+\section{Definições}
+
+Um digrafo é chamado de \defi{kernel perfeito} se todo subgrafo induzido possui kernel.
+
+Dado um circuito $C$, uma \defi{corda} de $C$ é uma aresta cujo vértices adjacentes estão em $C$.
+O \defi{comprimento} da corda é a distância dos seus vértices adjacentes \textit{no circuito}.
+Uma corda é \defi{curta} se seu comprimento é igual a $2$. Duas cordas $c=(a,b)$ e $z=(x,y)$ \defi{cruzam}, se seus vértices aparecem na ordem
+$a$, $x$, $b$ e $y$ no circuito.
+
+
+Um digrafo $D$ é chamado de \defi{super-orientação} de um grafo $G$, se $D$ é obtido de $G$ substituindo suas arestas por arcos, podendo ser duplos.
+
+Um grafo $G$ é \defi{kernel-solucionavel} (ou \defi{quase-perfeito}) se, para toda super-orientação de $D$ de $G$ em que todo clique de $D$ possui um kernel, $D$ também possui um kernel.
+
+Seja $G$ um grafo, 
+$B=  (v_0,\dots,v_n)$ uma sequência de vértices de $G$ e $C= (C_0,\dots,C_n)$ uma sequência de cliques.
+Dizemos que $G'$ é uma substituição de $B$ por $C$ em $G$ se $G'$ é obtido a partir de $(G - B) \cup C$ adicionando 
+as arestas de $C_i \in C$ e $\{uc, c \in V(C_i) : \exists v \in B : uv \in E(G) \}$.
+Chamamos $G'$ de um \defi{blow-up} de $G$.
+
+Seja $D$ um digrafo e seja $S \subset A(D)$. Dizemos que um conjunto de arcos $T$ é uma \defi{orientação} (ou \defi{reorientação}) de $S$ se, para todo $f\in T$,$f^-$ ou $f\in S$.
+Note que é possível $f$ e $f^-$ existir em $T$, mas só um deles existir em $S$. Uma orientação é \defi{parcial} se $f \in T$, então  $f^- \notin T$ e ou $f \in S$ ou 
+$f^- \in S$. Uma orientação~$T$ é \defi{total} se $f \in S$, então $f \in T$ ou $f^- \in T$.
+
+\section{Teoremas}
+\begin{theorem}[von Neumann]
+Todo digrafo acíclico é kernel perfeito. Além disso,seu kernel é único.
+\end{theorem}
+
+\begin{proof}
+Ordem topológica ou por indução em número de vértices
+\end{proof}
+
+
+\begin{theorem}[Richardson]
+Todo digrafo sem circuito ímpar é kernel perfeito.
+\end{theorem}
+\begin{proof}
+Se é fortemente conexo, usa busca em largura.
+
+Se não:
+Seja $D$ um digrafo sem circuitos ímpares com $n$ vértices. 
+Podemos supor que $D$ não seja fortemente conexo. 
+Seja $D'$ um componente fortemente conexo de $D$ do 
+qual não existem arcos saindo dele. 
+Pela hipótese de indução,
+$D'$ possui um kernel $K'$. 
+Seja $D''= D-N^-[K]$. Pela hipótese de indução, $D''$ possui um kernel $K''$.
+Como não existem $(K',K'')$-arcos nem $(K'',K')$-arcos,$K' \cup K''$ é um kernel de
+$D$, pois todo vértice de $D$ pertence a $K'$,$K''$ ou é absorvido por eles e, além disso, $K'$ e $K''$ são independentes.
+\end{proof}
+
+“O teorema direciona a atenção do estudo da existênciade kernel para digrafos que contém circuitos ímpares.”
+
+
+\begin{theorem}[Teorema forte de grafos perfeitos]
+Um grafo é perfeito se ele não possui circuitos impares com ao menos cinco vértices nem complementos desses como subgrafos induzidos.
+\end{theorem}
+
+\begin{theorem}
+Grafos perfeitos são kernel-solucionáveis.
+\end{theorem}
+
+A recíproca é mais difícil.
+
+\begin{theorem}
+Grafos de linha kernel-solucionáveis são perfeitos.
+\end{theorem}
+
+\begin{theorem}
+Se todo blow-up $G'$ de $G$ é kernel-solucionavel, então G é perfeito.
+\end{theorem}
+
+“Pode-se mostrar que ambas as conjecturas seguem do Teorema Forte dos Grafos Perfeitos. Por conta de ser uma prova muito extensa, a omitimos.”
+
+\begin{conjecture}[Meyniel]
+Se todo circuito ímpar de um digrafo $D$ possui duas cordas, então $D$ é kernel-perfeito.
+\end{conjecture}
+
+A conjectura se mostrou falsa.
+
+
+\begin{theorem}
+Se todo circuito de um digrafo $D$ possui um arco simétrico, o digrafo é kernel perfeito.
+\end{theorem}
+
+
+
+\end{document}
